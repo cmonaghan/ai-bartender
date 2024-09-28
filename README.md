@@ -20,7 +20,7 @@ Setup virtual env and install requirements
 
 Run the server
 
-    vercel dev
+    python index.py
 
 ## Deploy with Vercel
 
@@ -34,8 +34,6 @@ In the project settings, disable [Vercel Authentication](https://vercel.com/cmon
 
 Connect the [git repository](https://vercel.com/cmonaghans-projects-a39a8622/ai-bartender/settings/git)
 
-Add a vercel.json file
+Run locally using vercel (simulate how it will behave on deployment)
 
-Deploy to prod
-
-    vercel --prod
+    vercel dev
