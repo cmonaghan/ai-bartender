@@ -1,11 +1,12 @@
 from flask import Flask, render_template, request, jsonify, send_from_directory
-import openai
+from openai import OpenAI
 import os
+
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 app = Flask(__name__)
 
 # Set your OpenAI API key securely
-openai.api_key = os.getenv("OPENAI_API_KEY")
 
 @app.route('/')
 def home():
@@ -53,19 +54,17 @@ def get_cocktail():
 
     try:
         # Call the OpenAI API
-        response = openai.Completion.create(
-            engine="text-davinci-003",
-            prompt=prompt,
-            max_tokens=300,
-            temperature=0.8,
-            top_p=1,
-            n=1,
-            stop=None
+        response = client.chat.completions.create(
+            messages=[{
+                "role": "user",
+                "content": prompt,
+            }],
+            model="gpt-4o",
         )
 
         # Extract the recipe from the response
-        recipe = response.choices[0].text.strip()
-        return jsonify({'recipe': recipe})
+        recipe = response.choices[0].message.content
+        return jsonify({"recipe": recipe})
 
     except Exception as e:
         print(f"Error generating cocktail recipe: {e}")
