@@ -3,8 +3,27 @@ A cocktail recipe recommendation engine
 
 ## Setup
 
-    pip install flask openai
+Set your OpenAI API key
 
-    export OPENAI_API_KEY=your-api-key-here
+    # create .env file
+    touch .env
+
+    # Save the following in your .env file
+    OPENAI_API_KEY="<secret_key>"
+
+Setup virtual env and install requirements
+
+    python3 -m venv venv
+    . venv/bin/activate
+    pip3 install -r requirements.txt
+
+
+Run the server
 
     python app.py
+
+## Deploy with Vercel
+
+Initialize Vercel
+
+    vercel
