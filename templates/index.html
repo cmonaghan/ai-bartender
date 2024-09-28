@@ -183,8 +183,30 @@
                 if (response.ok) {
                     // Display the recipe
                     document.getElementById('result').innerHTML = `
-                        <pre class="recipe">${result.recipe}</pre>
+                        <div class="recipe">Cocktail Name: ${result.cocktail_name}</div>
+                        <div class="recipe">Ingredients:
+                            <ul id="ingredients"></ul>
+                        </div>
+                        <div class="recipe">Instructions:
+                            <ol id="instructions"></ol>
+                        </div>
+                        <div class="recipe">${result.notes}</div>
                     `;
+
+                    ingredients = document.getElementById("ingredients")
+                    result.ingredients.forEach(element => {
+                        let li = document.createElement("li");
+                        li.innerHTML = element
+                        ingredients.appendChild(li)
+                    });
+
+                    instructions = document.getElementById("instructions")
+                    result.instructions.forEach(element => {
+                        let li = document.createElement("li");
+                        li.innerHTML = element
+                        instructions.appendChild(li)
+                    });
+
                 } else {
                     // Handle errors
                     document.getElementById('result').innerHTML = `<p class="recipe">Sorry, we couldn't mix your cocktail at this time.</p>`;
