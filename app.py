@@ -2,7 +2,9 @@ from flask import Flask, render_template, request, jsonify, send_from_directory
 from openai import OpenAI
 import os
 
+print("hello world")
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+print("loaded api key")
 
 app = Flask(__name__)
 
