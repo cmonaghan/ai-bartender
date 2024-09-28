@@ -157,12 +157,10 @@
 
             // Simple logic to determine drink recommendation based on slider values
             let drinkName = 'Old Fashioned Remedy';
-            let imageUrl = 'old-fashioned.png';
             let recipe = '2 oz bourbon, 1 sugar cube, 2 dashes bitters, stirred with ice and served with an orange peel.';
 
             if (boozy > 7 && floral > 5) {
                 drinkName = 'Lavender Elixir Negroni';
-                imageUrl = 'negroni.png';
                 recipe = '1 oz dark rum, 1 oz Lillet Blanc, 1 oz gin, stirred with ice and served with a lemon twist and lavender.';
             }
 
@@ -174,7 +172,6 @@
             // Display result
             document.getElementById('result').innerHTML = `
                 <h2>${drinkName}</h2>
-                ${imageUrl ? `<img src="${imageUrl}" class="drink-image" alt="${drinkName}">` : ''}
                 <p class="recipe">${recipe}</p>
             `;
         }
