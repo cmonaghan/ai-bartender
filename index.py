@@ -1,11 +1,8 @@
-from dotenv import load_dotenv
 from flask import Flask, render_template, request, jsonify, send_from_directory
 from openai import OpenAI
 import os
 
-load_dotenv()
-
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 app = Flask(__name__)
 
