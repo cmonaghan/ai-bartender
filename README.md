@@ -37,3 +37,5 @@ Connect the [git repository](https://vercel.com/cmonaghans-projects-a39a8622/ai-
 Run locally using vercel (simulate how it will behave on deployment)
 
     vercel dev
+
+Note, the app entrypoint MUST be named `index.py` otherwise vercel will 404.
