@@ -144,7 +144,7 @@
         <footer> Crafted with precision & mystery © 2024 Cocktail Apothecary </footer>
     </div>
     <script>
-        function shakeItUp() {
+        async function shakeItUp() {
             // Get slider values
             const boozy = document.getElementById('boozy-slider').value;
             const sweet = document.getElementById('sweet-slider').value;
@@ -155,27 +155,46 @@
             // Get additional preferences
             const additionalPreferences = document.getElementById('additional-preferences').value;
 
-            // Simple logic to determine drink recommendation based on slider values
-            let drinkName = 'Old Fashioned Remedy';
-            let recipe = '2 oz bourbon, 1 sugar cube, 2 dashes bitters, stirred with ice and served with an orange peel.';
+            // Prepare the data to send to the back-end
+            const data = {
+                boozy,
+                sweet,
+                citrusy,
+                floral,
+                adventure,
+                additionalPreferences
+            };
 
-            if (boozy > 7 && floral > 5) {
-                drinkName = 'Lavender Elixir Negroni';
-                recipe = '1 oz dark rum, 1 oz Lillet Blanc, 1 oz gin, stirred with ice and served with a lemon twist and lavender.';
+            // Display a loading message
+            document.getElementById('result').innerHTML = `<p class="recipe">Mixing your unique elixir...</p>`;
+
+            try {
+                const response = await fetch('/get-cocktail', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    // Display the recipe
+                    document.getElementById('result').innerHTML = `
+                        <pre class="recipe">${result.recipe}</pre>
+                    `;
+                } else {
+                    // Handle errors
+                    document.getElementById('result').innerHTML = `<p class="recipe">Sorry, we couldn't mix your cocktail at this time.</p>`;
+                }
+            } catch (error) {
+                console.error('Error fetching cocktail:', error);
+                document.getElementById('result').innerHTML = `<p class="recipe">An error occurred. Please try again later.</p>`;
             }
-
-            // Include additional preferences in the result
-            if (additionalPreferences) {
-                recipe += `\n\nAdditional Notes: ${additionalPreferences}`;
-            }
-
-            // Display result
-            document.getElementById('result').innerHTML = `
-                <h2>${drinkName}</h2>
-                <p class="recipe">${recipe}</p>
-            `;
         }
     </script>
+
 </body>
 
 </html>
