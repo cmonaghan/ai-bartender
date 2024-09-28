@@ -20,7 +20,7 @@ Setup virtual env and install requirements
 
 Run the server
 
-    python index.py
+    vercel dev
 
 ## Deploy with Vercel
 
