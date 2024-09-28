@@ -14,11 +14,10 @@
             font-family: 'Libre Baskerville', serif;
             color: #e0e0d1;
             margin: 0;
-            padding: 0;
+            padding: 50px;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
         }
 
         .container {
@@ -63,7 +62,7 @@
 
         textarea {
             width: 100%;
-            margin-top: 15px;
+            margin: 15px 0;
             background-color: #3a3a3a;
             color: #e0e0d1;
             border: 2px solid #91684a;
@@ -82,7 +81,7 @@
             border: 1px solid #91684a;
             border-radius: 5px;
             cursor: pointer;
-            transition: all 0.3s ease-in-out;
+            transition: all 0.2s ease-in-out;
         }
 
         .shake-button:hover {
@@ -124,15 +123,15 @@
         <p>Enter your preferences to discover a hidden elixir.</p>
         <!-- Sliders -->
         <label class="slider-label">Boozy</label>
-        <input type="range" min="0" max="10" id="boozy-slider">
+        <input type="range" min="0" max="10" value="5" id="boozy-slider">
         <label class="slider-label">Sweet</label>
-        <input type="range" min="0" max="10" id="sweet-slider">
+        <input type="range" min="0" max="10" value="2" id="sweet-slider">
         <label class="slider-label">Citrusy</label>
-        <input type="range" min="0" max="10" id="citrusy-slider">
+        <input type="range" min="0" max="10" value="3" id="citrusy-slider">
         <label class="slider-label">Floral</label>
-        <input type="range" min="0" max="10" id="floral-slider">
+        <input type="range" min="0" max="10" value="0" id="floral-slider">
         <label class="slider-label">Adventure</label>
-        <input type="range" min="0" max="10" id="adventure-slider">
+        <input type="range" min="0" max="10" value="8" id="adventure-slider">
         <!-- Additional Preferences -->
         <label class="preferences-label">Additional Preferences (optional):</label>
         <textarea id="additional-preferences" rows="4"
