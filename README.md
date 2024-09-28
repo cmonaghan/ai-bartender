@@ -27,3 +27,13 @@ Run the server
 Initialize Vercel
 
     vercel
+
+Share the OpenAI API key to the project under team settings
+
+In the project settings, disable [Vercel Authentication](https://vercel.com/cmonaghans-projects-a39a8622/ai-bartender/settings/deployment-protection)
+
+Connect the [git repository](https://vercel.com/cmonaghans-projects-a39a8622/ai-bartender/settings/git)
+
+Deploy to prod
+
+    vercel --prod
