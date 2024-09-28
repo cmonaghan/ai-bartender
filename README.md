@@ -34,6 +34,8 @@ In the project settings, disable [Vercel Authentication](https://vercel.com/cmon
 
 Connect the [git repository](https://vercel.com/cmonaghans-projects-a39a8622/ai-bartender/settings/git)
 
+Add a vercel.json file
+
 Deploy to prod
 
     vercel --prod
