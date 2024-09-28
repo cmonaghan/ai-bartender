@@ -1,15 +1,20 @@
-# app.py
-
-from flask import Flask, request, jsonify
-from flask_cors import CORS
+from flask import Flask, render_template, request, jsonify, send_from_directory
 import openai
 import os
 
 app = Flask(__name__)
-CORS(app)
 
 # Set your OpenAI API key securely
-openai.api_key = os.getenv("OPENAI_API_KEY")  # Make sure the API key is set as an environment variable
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
 
 @app.route('/get-cocktail', methods=['POST'])
 def get_cocktail():
@@ -24,7 +29,7 @@ def get_cocktail():
 
     # Construct the prompt based on user preferences
     prompt = f"""
-    You are an expert mixologist. Create a unique cocktail recipe based on the following preferences:
+    You are an expert mixologist. Create a unique and creative cocktail recipe based on the following preferences:
 
     - Boozy level (0-10): {boozy}
     - Sweetness (0-10): {sweet}
@@ -36,12 +41,14 @@ def get_cocktail():
     Provide the recipe in the following format:
 
     Cocktail Name: [Name]
+
     Ingredients:
     - [List of ingredients]
-    Instructions:
-    - [Step-by-step instructions]
 
-    Ensure the recipe is creative and matches the user's preferences.
+    Instructions:
+    1. [Step-by-step instructions]
+
+    Ensure the recipe is precise, clear, and matches the user's preferences.
     """
 
     try:
@@ -49,7 +56,7 @@ def get_cocktail():
         response = openai.Completion.create(
             engine="text-davinci-003",
             prompt=prompt,
-            max_tokens=250,
+            max_tokens=300,
             temperature=0.8,
             top_p=1,
             n=1,
